@@ -1,8 +1,8 @@
 package com.cloverr.clovertestapp.ui.transactions
 
 import androidx.lifecycle.ViewModel
-import com.cloverr.clovertestapp.data.ModifiedItem
-import com.cloverr.clovertestapp.data.repository.ModifiedItemRepository
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
+import com.cloverr.clovertestapp.models.repository.ModifiedItemRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

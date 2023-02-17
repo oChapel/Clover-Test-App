@@ -1,9 +1,9 @@
-package com.cloverr.clovertestapp.data.repository
+package com.cloverr.clovertestapp.models.repository
 
 import android.content.Context
-import com.cloverr.clovertestapp.data.ModifiedItem
-import com.cloverr.clovertestapp.data.ModifiedItemDao
-import com.cloverr.clovertestapp.data.ModifiedItemDatabase
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
+import com.cloverr.clovertestapp.models.dao.ModifiedItemDao
+import com.cloverr.clovertestapp.models.dao.ModifiedItemDatabase
 import com.cloverr.clovertestapp.utils.dispatchers.DispatchersHolder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

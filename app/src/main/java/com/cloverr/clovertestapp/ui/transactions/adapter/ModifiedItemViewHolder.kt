@@ -2,7 +2,7 @@ package com.cloverr.clovertestapp.ui.transactions.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.cloverr.clovertestapp.R
-import com.cloverr.clovertestapp.data.ModifiedItem
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
 import com.cloverr.clovertestapp.databinding.ItemModifiedItemBinding
 import com.cloverr.clovertestapp.utils.StringUtils
 

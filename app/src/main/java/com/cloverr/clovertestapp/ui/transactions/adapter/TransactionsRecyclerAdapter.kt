@@ -3,7 +3,7 @@ package com.cloverr.clovertestapp.ui.transactions.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.cloverr.clovertestapp.data.ModifiedItem
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
 import com.cloverr.clovertestapp.databinding.ItemModifiedItemBinding
 
 class TransactionsRecyclerAdapter :

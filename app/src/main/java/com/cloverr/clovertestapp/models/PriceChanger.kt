@@ -1,10 +1,11 @@
-package com.cloverr.clovertestapp.background
+package com.cloverr.clovertestapp.models
 
 import android.accounts.Account
 import android.content.Context
 import com.clover.sdk.v3.inventory.*
 import com.clover.sdk.v3.order.OrderConnector
-import com.cloverr.clovertestapp.data.ModifiedItem
+import com.cloverr.clovertestapp.background.LineItemAddedActionInfo
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
 import com.cloverr.clovertestapp.utils.dispatchers.DispatchersHolder
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow

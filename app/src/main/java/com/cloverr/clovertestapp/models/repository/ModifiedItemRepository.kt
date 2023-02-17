@@ -1,6 +1,6 @@
-package com.cloverr.clovertestapp.data.repository
+package com.cloverr.clovertestapp.models.repository
 
-import com.cloverr.clovertestapp.data.ModifiedItem
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
 import kotlinx.coroutines.flow.Flow
 
 interface ModifiedItemRepository {

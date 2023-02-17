@@ -1,7 +1,7 @@
 package com.cloverr.clovertestapp.ui.transactions.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.cloverr.clovertestapp.data.ModifiedItem
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
 
 object ModifiedItemDiffCallback : DiffUtil.ItemCallback<ModifiedItem>() {
 

@@ -1,9 +1,10 @@
-package com.cloverr.clovertestapp.data
+package com.cloverr.clovertestapp.models.dao
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.cloverr.clovertestapp.models.dto.ModifiedItem
 
 @Database(entities = [ModifiedItem::class], version = 1)
 abstract class ModifiedItemDatabase : RoomDatabase() {

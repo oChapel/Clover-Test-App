@@ -1,4 +1,4 @@
-package com.cloverr.clovertestapp.data
+package com.cloverr.clovertestapp.models.dto
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

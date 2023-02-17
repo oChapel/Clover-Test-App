@@ -3,9 +3,9 @@ package com.cloverr.clovertestapp.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cloverr.clovertestapp.R
-import com.cloverr.clovertestapp.background.PriceChanger
+import com.cloverr.clovertestapp.models.PriceChanger
 import com.cloverr.clovertestapp.bus.BroadcastBus
-import com.cloverr.clovertestapp.data.repository.ModifiedItemRepository
+import com.cloverr.clovertestapp.models.repository.ModifiedItemRepository
 import com.cloverr.clovertestapp.ui.percentage.PercentageSettingScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
