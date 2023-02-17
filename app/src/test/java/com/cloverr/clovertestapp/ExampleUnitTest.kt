@@ -1,4 +1,4 @@
-package com.clover.clovertestapp
+package com.cloverr.clovertestapp
 
 import org.junit.Test
 

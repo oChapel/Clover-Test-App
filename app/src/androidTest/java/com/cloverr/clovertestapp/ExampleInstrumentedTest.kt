@@ -1,4 +1,4 @@
-package com.clover.clovertestapp
+package com.cloverr.clovertestapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
