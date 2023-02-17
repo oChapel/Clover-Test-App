@@ -44,6 +44,8 @@ class TransactionsHistoryFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.getModifiedItems().collect {
+                binding?.noTransactionsTv?.visibility =
+                    if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
                 adapter.submitList(it)
             }
         }
