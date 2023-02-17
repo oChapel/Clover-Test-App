@@ -5,6 +5,8 @@ import android.content.Context
 import com.clover.sdk.util.CloverAccount
 import com.cloverr.clovertestapp.App
 import com.cloverr.clovertestapp.background.OrderChangedActionReceiver
+import com.cloverr.clovertestapp.data.repository.ModifiedItemRepository
+import com.cloverr.clovertestapp.data.repository.ModifiedItemRepositoryImpl
 import com.cloverr.clovertestapp.utils.dispatchers.DispatchersHolder
 import com.cloverr.clovertestapp.utils.dispatchers.DispatchersHolderImpl
 import dagger.Binds
@@ -38,4 +40,9 @@ abstract class AbstractModule {
     abstract fun provideDispatchersHolder(
         dispatchersHolderImpl: DispatchersHolderImpl
     ): DispatchersHolder
+
+    @Binds
+    abstract fun provideRepository(
+        repositoryImpl: ModifiedItemRepositoryImpl
+    ): ModifiedItemRepository
 }

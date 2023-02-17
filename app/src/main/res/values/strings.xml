@@ -6,4 +6,10 @@
     <string name="button_set">Set</string>
     <string name="empty_input">Please enter value from 5 to 25</string>
     <string name="ineligible_input">The number should be not less than 5 and not more than 25</string>
+
+    <string name="item_date">Date: %1$s</string>
+    <string name="item_old_price">Old price: %1$l</string>
+    <string name="item_new_price">New price: %1$l</string>
+    <string name="item_order_id">Order ID: %1$s</string>
+    <string name="item_item_id">Item ID: %1$s</string>
 </resources>

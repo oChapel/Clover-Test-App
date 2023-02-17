@@ -1,10 +1,12 @@
-package com.cloverr.clovertestapp.ui.main
+package com.cloverr.clovertestapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cloverr.clovertestapp.R
 import com.cloverr.clovertestapp.background.PriceChanger
 import com.cloverr.clovertestapp.bus.BroadcastBus
+import com.cloverr.clovertestapp.data.repository.ModifiedItemRepository
+import com.cloverr.clovertestapp.ui.percentage.PercentageSettingScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -12,32 +14,40 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val broadcastBus: BroadcastBus,
-    private val priceChanger: PriceChanger
+    private val priceChanger: PriceChanger,
+    private val repository: ModifiedItemRepository
 ) : ViewModel() {
 
     init {
+        priceChanger.onAttach()
+
         viewModelScope.launch {
-            priceChanger.onAttach()
             broadcastBus.actionInfoFlow.collect { info ->
                 priceChanger.onLineItemAdded(priceCoefficient, info)
+            }
+        }
+
+        viewModelScope.launch {
+            priceChanger.modifiedItemFlow.collect { item ->
+                repository.insertModifiedItem(item)
             }
         }
     }
 
     private var priceCoefficient = 1L
 
-    private val mainScreenStateMutableFlow = MutableStateFlow(
-        MainScreenState(
+    private val percentageSettingScreenStateMutableFlow = MutableStateFlow(
+        PercentageSettingScreenState(
             isEditingEnabled = true,
             inputLayoutError = null
         )
     )
-    val mainScreenStateFlow = mainScreenStateMutableFlow.asStateFlow()
+    val mainScreenStateFlow = percentageSettingScreenStateMutableFlow.asStateFlow()
 
     fun setPercentage(input: String) {
         if (input.isEmpty()) {
-            mainScreenStateMutableFlow.tryEmit(
-                MainScreenState(
+            percentageSettingScreenStateMutableFlow.tryEmit(
+                PercentageSettingScreenState(
                     isEditingEnabled = true,
                     inputLayoutError = R.string.empty_input
                 )
@@ -47,24 +57,24 @@ class MainViewModel @Inject constructor(
         try {
             val percents = input.toInt()
             if (percents < 5 || percents > 25) {
-                mainScreenStateMutableFlow.tryEmit(
-                    MainScreenState(
+                percentageSettingScreenStateMutableFlow.tryEmit(
+                    PercentageSettingScreenState(
                         isEditingEnabled = true,
                         inputLayoutError = R.string.ineligible_input
                     )
                 )
             } else {
                 setPriceCoefficient(percents)
-                mainScreenStateMutableFlow.tryEmit(
-                    MainScreenState(
+                percentageSettingScreenStateMutableFlow.tryEmit(
+                    PercentageSettingScreenState(
                         isEditingEnabled = false,
                         inputLayoutError = null
                     )
                 )
             }
         } catch (e: java.lang.NumberFormatException) {
-            mainScreenStateMutableFlow.tryEmit(
-                MainScreenState(
+            percentageSettingScreenStateMutableFlow.tryEmit(
+                PercentageSettingScreenState(
                     isEditingEnabled = true,
                     inputLayoutError = R.string.ineligible_input
                 )
@@ -73,7 +83,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun setPriceCoefficient(percents: Int) {
-        priceCoefficient = 1L + percents.toLong().div(100)
+        priceCoefficient = percents.toLong()
     }
 
     override fun onCleared() {
