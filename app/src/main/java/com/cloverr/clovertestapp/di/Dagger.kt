@@ -21,7 +21,7 @@ interface AppComponent {
     fun inject(receiver: OrderChangedActionReceiver)
 }
 
-@Module(includes = [AbstractModule::class])
+@Module(includes = [AppBindModule::class])
 class AppModule {
 
     @Provides
@@ -34,15 +34,15 @@ class AppModule {
 }
 
 @Module
-abstract class AbstractModule {
+interface AppBindModule {
 
     @Binds
-    abstract fun provideDispatchersHolder(
+    fun bindDispatchersHolder(
         dispatchersHolderImpl: DispatchersHolderImpl
     ): DispatchersHolder
 
     @Binds
-    abstract fun provideRepository(
+    fun bindRepository(
         repositoryImpl: ModifiedItemRepositoryImpl
     ): ModifiedItemRepository
 }
