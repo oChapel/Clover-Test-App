@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.cloverr.clovertestapp.R
 import com.cloverr.clovertestapp.databinding.FragmentSettingPercentageBinding
 import com.cloverr.clovertestapp.ui.MainViewModel
+import com.cloverr.clovertestapp.ui.transactions.TransactionsHistoryFragment
 import kotlinx.coroutines.launch
 
 class PercentageSettingFragment : Fragment(), View.OnClickListener {
@@ -46,6 +48,10 @@ class PercentageSettingFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view) {
             binding?.setPercentageButton -> viewModel.setPercentage(binding?.percentageEditText?.text.toString())
+            binding?.seeTransactionsButton -> parentFragmentManager.beginTransaction()
+                .replace(R.id.main_fragment_container_view, TransactionsHistoryFragment())
+                .addToBackStack(null)
+                .commit()
         }
     }
 

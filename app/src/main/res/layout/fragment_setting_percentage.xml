@@ -48,8 +48,21 @@
         android:fontFamily="@font/alegreya"
         android:text="@string/button_set"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/see_transactions_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/percentage_input_layout" />
+
+    <Button
+        android:id="@+id/see_transactions_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/alegreya"
+        android:text="@string/button_see_transactions"
+        android:textColor="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@id/set_percentage_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/set_percentage_button"
+        app:layout_constraintTop_toTopOf="@id/set_percentage_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
