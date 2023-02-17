@@ -1,6 +1,7 @@
 package com.cloverr.clovertestapp.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.cloverr.clovertestapp.R
 import com.cloverr.clovertestapp.models.PriceChanger
@@ -12,11 +13,23 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class MainViewModel (
     private val broadcastBus: BroadcastBus,
     private val priceChanger: PriceChanger,
     private val repository: ModifiedItemRepository
 ) : ViewModel() {
+
+    @Suppress("UNCHECKED_CAST")
+    class Factory @Inject constructor(
+        private val broadcastBus: BroadcastBus,
+        private val priceChanger: PriceChanger,
+        private val repository: ModifiedItemRepository
+    ) : ViewModelProvider.NewInstanceFactory() {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return MainViewModel(broadcastBus, priceChanger, repository) as T
+        }
+    }
 
     init {
         priceChanger.onAttach()

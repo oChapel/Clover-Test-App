@@ -7,6 +7,8 @@ import com.cloverr.clovertestapp.App
 import com.cloverr.clovertestapp.background.OrderChangedActionReceiver
 import com.cloverr.clovertestapp.models.repository.ModifiedItemRepository
 import com.cloverr.clovertestapp.models.repository.ModifiedItemRepositoryImpl
+import com.cloverr.clovertestapp.ui.percentage.PercentageSettingFragment
+import com.cloverr.clovertestapp.ui.transactions.TransactionsHistoryFragment
 import com.cloverr.clovertestapp.utils.dispatchers.DispatchersHolder
 import com.cloverr.clovertestapp.utils.dispatchers.DispatchersHolderImpl
 import dagger.Binds
@@ -19,6 +21,8 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
     fun inject(receiver: OrderChangedActionReceiver)
+    fun inject(fragment: PercentageSettingFragment)
+    fun inject(fragment: TransactionsHistoryFragment)
 }
 
 @Module(includes = [AppBindModule::class])
@@ -30,7 +34,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideCloverAccount(appContext: Context): Account = CloverAccount.getAccount(appContext)
+    fun provideCloverAccount(appContext: Context): Account? = CloverAccount.getAccount(appContext)
 }
 
 @Module

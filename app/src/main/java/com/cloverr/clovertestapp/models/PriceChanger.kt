@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class PriceChanger @Inject constructor(
     appContext: Context,
-    cloverAccount: Account,
+    cloverAccount: Account?,
     private val dispatchers: DispatchersHolder
 ) {
 

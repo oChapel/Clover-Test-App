@@ -11,8 +11,8 @@ android {
     defaultConfig {
         applicationId "com.cloverr.clovertestapp"
         minSdk 17
-        //noinspection ExpiredTargetSdkVersion
         multiDexEnabled true
+        //noinspection ExpiredTargetSdkVersion
         targetSdk 25
         versionCode 1
         versionName "1.0"

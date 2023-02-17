@@ -8,16 +8,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.cloverr.clovertestapp.App
 import com.cloverr.clovertestapp.R
 import com.cloverr.clovertestapp.databinding.FragmentSettingPercentageBinding
 import com.cloverr.clovertestapp.ui.MainViewModel
 import com.cloverr.clovertestapp.ui.transactions.TransactionsHistoryFragment
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class PercentageSettingFragment : Fragment(), View.OnClickListener {
 
     private var binding: FragmentSettingPercentageBinding? = null
-    private val viewModel: MainViewModel by activityViewModels()
+
+    @Inject
+    lateinit var factory: MainViewModel.Factory
+    private val viewModel: MainViewModel by activityViewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,11 +35,14 @@ class PercentageSettingFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        App.instance.appComponent.inject(this)
 
         binding?.setPercentageButton?.setOnClickListener(this)
+        binding?.seeTransactionsButton?.setOnClickListener(this)
         lifecycleScope.launch {
             viewModel.mainScreenStateFlow.collect { state ->
-                binding?.percentageInputLayout?.error = state.inputLayoutError?.let { getString(it) }
+                binding?.percentageInputLayout?.error =
+                    state.inputLayoutError?.let { getString(it) }
                 binding?.setPercentageButton?.isEnabled = state.isEditingEnabled
                 binding?.percentageEditText?.apply {
                     isEnabled = state.isEditingEnabled
